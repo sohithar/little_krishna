@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Krishna Janmashtami</title>
+<style>
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body {
+    width:100vw; height:100vh; overflow:hidden;
+    background: radial-gradient(ellipse at center, #1a1a4d 0%, #0a0a2e 60%, #050514 100%);
+    font-family: 'Georgia', serif;
+    display:flex; align-items:center; justify-content:center;
+    position:relative;
+  }
+
+  /* Twinkling stars */
+  .stars {
+    position:absolute; top:0; left:0; width:100%; height:100%;
+  }
+  .star {
+    position:absolute; width:2px; height:2px; background:#fff; border-radius:50%;
+    animation: twinkle 3s infinite ease-in-out;
+  }
+  @keyframes twinkle {
+    0%,100% { opacity:0.2; }
+    50% { opacity:1; }
+  }
+
+  .scene {
+    position:relative;
+    width:90vmin; height:90vmin;
+    display:flex; align-items:center; justify-content:center;
+  }
+
+  .moon {
+    position:absolute; top:5%; right:10%;
+    width:80px; height:80px; border-radius:50%;
+    background: radial-gradient(circle at 35% 35%, #fffbe0, #ffe28a);
+    box-shadow: 0 0 40px 15px rgba(255,230,150,0.5);
+  }
+
+  .glow-ring {
+    position:absolute;
+    width:60vmin; height:60vmin; border-radius:50%;
+    background: radial-gradient(circle, rgba(255,200,80,0.25) 0%, transparent 70%);
+    animation: pulse 4s infinite ease-in-out;
+  }
+  @keyframes pulse {
+    0%,100% { transform:scale(1); opacity:0.7; }
+    50% { transform:scale(1.08); opacity:1; }
+  }
+
+  svg.art { position:relative; width:55vmin; z-index:2; filter: drop-shadow(0 0 25px rgba(255,200,100,0.4)); }
+
+  .title {
+    position:absolute; bottom:8%; width:100%; text-align:center;
+    color:#ffd76a; font-size:clamp(20px, 4vw, 42px);
+    text-shadow: 0 0 15px rgba(255,200,80,0.7);
+    letter-spacing:2px;
+  }
+  .subtitle {
+    position:absolute; bottom:3%; width:100%; text-align:center;
+    color:#e0c9a6; font-size:clamp(12px, 1.6vw, 18px);
+    letter-spacing:3px; opacity:0.85;
+  }
+
+  .player {
+    position:absolute; top:20px; left:50%; transform:translateX(-50%);
+    background:rgba(255,255,255,0.08); backdrop-filter:blur(6px);
+    border:1px solid rgba(255,215,120,0.3); border-radius:30px;
+    padding:8px 18px; display:flex; align-items:center; gap:10px;
+    color:#ffd76a; font-size:13px; z-index:5;
+  }
+  .player button {
+    background:#ffd76a; border:none; border-radius:50%;
+    width:32px; height:32px; cursor:pointer; font-size:14px;
+  }
+</style>
+</head>
+<body>
+
+<div class="stars" id="stars"></div>
+
+<div class="player">
+  <span>🎵 Add your music file</span>
+  <button id="playBtn">▶</button>
+</div>
+<!-- Replace "your-music.mp3" below with your own royalty-free audio file placed in the same folder -->
+<audio id="bgMusic" loop src="your-music.mp3"></audio>
+
+<div class="scene">
+  <div class="glow-ring"></div>
+  <div class="moon"></div>
+
+  <svg class="art" viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+    <!-- Peacock feather -->
+    <g transform="translate(200,60) rotate(-15)">
+      <path d="M0,0 C-10,40 -10,90 0,140" stroke="#2e7d32" stroke-width="4" fill="none"/>
+      <ellipse cx="0" cy="-5" rx="18" ry="26" fill="#1565c0"/>
+      <ellipse cx="0" cy="-5" rx="11" ry="17" fill="#2e7d32"/>
+      <ellipse cx="0" cy="-5" rx="5" ry="8" fill="#6a1b9a"/>
+    </g>
+
+    <!-- Flute -->
+    <rect x="120" y="230" width="120" height="10" rx="5" fill="#8d6e63" transform="rotate(-20 180 235)"/>
+
+    <!-- Lotus base -->
+    <g transform="translate(200,430)">
+      <ellipse cx="0" cy="0" rx="90" ry="18" fill="#4a148c" opacity="0.6"/>
+      <path d="M-70,0 Q-35,-45 0,0 Q35,-45 70,0 Q35,20 0,10 Q-35,20 -70,0 Z" fill="#e91e63"/>
+      <path d="M-45,0 Q-20,-30 0,0 Q20,-30 45,0 Q20,15 0,8 Q-20,15 -45,0 Z" fill="#f06292"/>
+    </g>
+
+    <!-- Diya (oil lamp) left -->
+    <g transform="translate(70,380)">
+      <ellipse cx="0" cy="10" rx="26" ry="10" fill="#bf360c"/>
+      <path d="M-26,10 Q0,25 26,10 Q20,-2 0,-2 Q-20,-2 -26,10 Z" fill="#e64a19"/>
+      <ellipse cx="0" cy="-15" rx="4" ry="14" fill="#ffca28">
+        <animate attributeName="ry" values="14;18;14" dur="1.5s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+
+    <!-- Diya right -->
+    <g transform="translate(330,380)">
+      <ellipse cx="0" cy="10" rx="26" ry="10" fill="#bf360c"/>
+      <path d="M-26,10 Q0,25 26,10 Q20,-2 0,-2 Q-20,-2 -26,10 Z" fill="#e64a19"/>
+      <ellipse cx="0" cy="-15" rx="4" ry="14" fill="#ffca28">
+        <animate attributeName="ry" values="14;18;14" dur="1.7s" repeatCount="indefinite"/>
+      </ellipse>
+    </g>
+
+    <!-- Om symbol -->
+    <text x="200" y="270" font-size="90" text-anchor="middle" fill="#ffd76a" font-family="serif" opacity="0.95">ॐ</text>
+
+    <!-- Crown hint -->
+    <g transform="translate(200,140)">
+      <path d="M-30,20 L-20,-15 L-8,10 L0,-25 L8,10 L20,-15 L30,20 Z" fill="#ffca28" stroke="#e65100" stroke-width="1.5"/>
+      <circle cx="0" cy="-25" r="5" fill="#43a047"/>
+    </g>
+  </svg>
+
+  <div class="title">श्री कृष्ण जन्माष्टमी</div>
+  <div class="subtitle">HAPPY KRISHNA JANMASHTAMI</div>
+</div>
+
+<script>
+  // Generate random twinkling stars
+  const starsContainer = document.getElementById('stars');
+  for (let i = 0; i < 120; i++) {
+    const s = document.createElement('div');
+    s.className = 'star';
+    s.style.left = Math.random() * 100 + '%';
+    s.style.top = Math.random() * 100 + '%';
+    s.style.animationDelay = Math.random() * 3 + 's';
+    s.style.width = s.style.height = (Math.random() * 2 + 1) + 'px';
+    starsContainer.appendChild(s);
+  }
+
+  // Play/pause music
+  const btn = document.getElementById('playBtn');
+  const audio = document.getElementById('bgMusic');
+  btn.addEventListener('click', () => {
+    if (audio.paused) {
+      audio.play().catch(() => alert('Add your own music file named "your-music.mp3" in the same folder as this HTML file.'));
+      btn.textContent = '⏸';
+    } else {
+      audio.pause();
+      btn.textContent = '▶';
+    }
+  });
+</script>
+
+</body>
+</html>
